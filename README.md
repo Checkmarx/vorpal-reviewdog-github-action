@@ -1,4 +1,4 @@
-# GitHub Action: Run Vorpal with reviewdog
+# GitHub Action: Run Vorpal With reviewdog 🐶
 
 This action runs `Vorpal` with [reviewdog](https://github.com/reviewdog/reviewdog) on pull requests to improve code review experience.
 
@@ -63,8 +63,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Test Vorpal action
-        uses: ./
+      - name: Vorpal With Reviewdog
+        uses: checkmarx/vorpal-reviewdog-github-action@v1
         with:
           source_path: testdata/samples/FileA.java,testdata/samples/FileB.java
           filter_mode: added
