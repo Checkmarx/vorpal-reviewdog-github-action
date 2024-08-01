@@ -1,0 +1,40 @@
+# action.yml
+name: "Vorpal Github Action With ReviewDog"
+description: "Vorpal Scan of files and shows in PR annotations and comments"
+inputs:
+  github_token:
+    description: 'GITHUB_TOKEN.'
+    required: true
+    default: ${{ github.token }}
+  source_path:
+    description: "The path to the source code to scan"
+    required: true
+  level:
+    description: 'Report level for reviewdog [info,warning,error]'
+    default: 'error'
+  reporter:
+    description: |
+      Reporter of reviewdog command [github-pr-check,github-pr-review].
+      Default is `github-pr-review`.
+    default: 'github-pr-review'
+  filter_mode:
+    description: |
+      Filtering mode for the reviewdog command [added,diff_context,file,nofilter].
+      Default is `added`.
+    default: 'added'
+  fail_on_error:
+    description: |
+      Exit code for reviewdog when errors are found [true,false]
+      Default is `false`.
+    default: 'false'
+  reviewdog_flags:
+    description: 'Additional reviewdog flags'
+    default: ''
+runs:
+  using: "docker"
+  image: Dockerfile
+  env:
+    WORKSPACE_PATH: $GITHUB_WORKSPACE
+branding:
+  icon: 'monitor'
+  color: 'purple'
