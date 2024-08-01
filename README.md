@@ -63,7 +63,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Vorpal With Reviewdog
+      - name: Vorpal with reviewdog
         uses: checkmarx/vorpal-reviewdog-github-action@v1
         with:
           source_path: testdata/samples/FileA.java,testdata/samples/FileB.java
