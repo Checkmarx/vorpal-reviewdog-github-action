@@ -64,7 +64,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Vorpal with reviewdog
-        uses: checkmarx/vorpal-reviewdog-github-action@v1
+        uses: checkmarx/vorpal-reviewdog-github-action@v1.0.0
         with:
           source_path: testdata/samples/FileA.java,testdata/samples/FileB.java
           filter_mode: added
