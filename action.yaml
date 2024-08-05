@@ -1,6 +1,6 @@
 # action.yml
 name: "Vorpal Github Action With ReviewDog"
-description: "Vorpal Scan of files and shows in PR annotations and comments"
+description: "Action Scan files with Vorpal engine and shows with reviewdog annotations and comments in PR"
 inputs:
   github_token:
     description: 'GITHUB_TOKEN.'

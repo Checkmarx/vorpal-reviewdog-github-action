@@ -69,7 +69,6 @@ jobs:
           source_path: testdata/samples/FileA.java,testdata/samples/FileB.java
           filter_mode: added
           github_token: ${{ secrets.github_token }}
-          tool_name: Vorpal
           reporter: github-pr-check
           level: error
           fail_on_error: false
