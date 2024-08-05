@@ -13,19 +13,29 @@ if [ -z "$INPUT_SOURCE_PATH" ]; then
     exit 1
 else
    INPUT_SOURCE_PATH=$(echo $INPUT_SOURCE_PATH | sed -e 's/^"//' -e 's/"$//')
-   INPUT_PATH_PARAM="-s $INPUT_SOURCE_PATH"
+   IFS=','; set -- $INPUT_SOURCE_PATH; unset IFS
 fi
 
 export REVIEWDOG_GITHUB_API_TOKEN="${INPUT_GITHUB_TOKEN}"
 
-# Scan Vorpal
-echo "${DATETIME} - INF : about to scan file $INPUT_SOURCE_PATH"
-echo "${DATETIME} - INF : vorpal command $INPUT_PATH_PARAM $RESULTS_FILE_PARAM"
-/app/bin/vorpal $INPUT_PATH_PARAM -r result.errorformat
+# Create a file to store all the results
+all_results_file="all_results.errorformat"
+> "$all_results_file"
+
+# Scan Vorpal for each file
+for file in "$@";
+do
+  echo "${DATETIME} - INF : about to scan file $file"
+  echo "${DATETIME} - INF : vorpal command -s $file -r result.errorformat"
+  /app/bin/vorpal -s "$file" -r result.errorformat
+
+  # Append the results to the all_results_file
+  cat result.errorformat >> "$all_results_file"
+done
 
 # Reviewdog
 echo "${DATETIME} - INF : Reviewdog executing on version $(reviewdog -version)"
-cat result.errorformat | reviewdog -efm '%f:%l:%c:%m' \
+cat "$all_results_file" | reviewdog -efm '%f:%l:%c:%m' \
                                    -name="Vorpal" \
                                    -reporter="${INPUT_REPORTER:-github-pr-check}" \
                                    -filter-mode="${INPUT_FILTER_MODE}" \
