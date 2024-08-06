@@ -76,7 +76,7 @@ jobs:
 ```
 
 ## Example With Changed Files
-In the example bellow we use the [tj-action/changed-files](https://github.com/tj-actions/changed-files) vorpal-reviewdog-github-action so we do not need to specify each file in the source_path field.
+In the example bellow we use the [tj-action/changed-files](https://github.com/tj-actions/changed-files) with vorpal-reviewdog-github-action so we do not need to specify files in the source_path field.
 
 ```yaml
 name: vorpal-reviewdog-changeFiles
