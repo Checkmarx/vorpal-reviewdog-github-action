@@ -1,5 +1,5 @@
 # Stage 1: Base Image with Vorpal CLI
-FROM hffernandes/vorpal-cli:1.0.114 as build-vorpal
+FROM checkmarx/vorpal-cli:1.0.116 as build-vorpal
 
 # Stage 1: Build Reviewdog executable using Alpine
 FROM alpine:latest AS build-reviewdog
