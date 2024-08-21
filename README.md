@@ -1,4 +1,4 @@
-# GitHub Action: Run Vorpal With reviewdog 🐶
+# GitHub Action: Run Vorpal with reviewdog 🐶
 
 This action runs `Vorpal` with [reviewdog](https://github.com/reviewdog/reviewdog) on pull requests to improve code review experience.
 
