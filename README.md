@@ -2,6 +2,12 @@
 
 This action runs `Vorpal` with [reviewdog](https://github.com/reviewdog/reviewdog) on pull requests to improve code review experience.
 
+**Vorpal is an ultra-fast engine**, specifically designed to empower developers by enabling them to identify and address security best coding practices early in the development process, known as "shifting left." By catching potential issues at the initial stages, Vorpal helps developers proactively prevent costly security reviews and critical security issues later in the development cycle.
+ 
+Unlike traditional SAST engines that scan entire projects and analyze complex source code flows, Vorpal focuses on individual files and short code snippets, including AI-generated code. It empowers developers with clear, actionable feedback on detected issues, complete with descriptions and remediation advice, enabling them to quickly enhance the security of their codebases. While Vorpal doesn't delve into specific attack vectors, it emphasizes proactive security measures early in the development process, which not only strengthens code security but also reduces and refines findings in later SAST scans, making them more precise and manageable.
+
+Vorpal currently supports `Java`, `JavaScript (Node.js)`, `C#`, and `Python`.
+
 ## Examples
 ### With github-pr-check
 By default, with reporter: github-pr-check an annotation is added to the line:
