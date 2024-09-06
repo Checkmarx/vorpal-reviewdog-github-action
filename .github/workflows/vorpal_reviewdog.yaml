@@ -17,4 +17,4 @@ jobs:
           github_token: ${{ secrets.github_token }}
           reporter: github-pr-check
       - run: |
-          cat all_results_file.errorformat
+          cat all_results.errorformat
