@@ -1,4 +1,4 @@
-name: Vorpal With Reviewdog
+name: Vorpal With reviewdog
 
 on:
   workflow_dispatch:
@@ -17,4 +17,4 @@ jobs:
           github_token: ${{ secrets.github_token }}
           reporter: github-pr-check
       - run: |
-          cat vorpal_results.errorformat
+          cat all_results_file.errorformat
