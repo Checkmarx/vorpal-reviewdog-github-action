@@ -4,6 +4,9 @@ FROM checkmarx/vorpal-cli:1.0.116 as build-vorpal
 # Stage 1: Build Reviewdog executable using Alpine
 FROM alpine:latest AS build-reviewdog
 
+# JFrog Artifactory login
+docker login $JFROG_URL -u "$JFROG_USERNAME" --password "$JFROG_PASSWORD"
+
 ENV REVIEWDOG_VERSION=v0.20.1
 
 # Install necessary packages and Reviewdog
@@ -12,7 +15,7 @@ RUN apk --no-cache add curl bash \
 
 # Deploy the application binary
 #FROM alpine:latest
-FROM cgr.dev/chainguard/bash:latest
+FROM $JFROG_URL/ast-docker/chainguard/bash:5.2.32-r2--fd030c994554fe
 
 # Set the working directory
 WORKDIR /app/bin
