@@ -1,0 +1,20 @@
+name: Vorpal With Reviewdog
+
+on:
+  workflow_dispatch:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332
+      - name: Test Vorpal action
+        uses: ./
+        with:
+          source_path: testdata/samples/BindToAll.java,testdata/samples/ConnectionTimeout.java
+          filter_mode: file
+          github_token: ${{ secrets.github_token }}
+          reporter: github-pr-check
+      - run: |
+          cat vorpal_results.errorformat
