@@ -35,6 +35,9 @@ runs:
   image: Dockerfile
   env:
     WORKSPACE_PATH: $GITHUB_WORKSPACE
+    JFROG_USERNAME: ${{ secrets.ORG_CI_JFROG_USERNAME }}
+    JFROG_PASSWORD: ${{ secrets.ORG_CI_JFROG_PASSWORD }}
+    JFROG_URL: "checkmarx.jfrog.io"
 branding:
   icon: 'monitor'
   color: 'purple'
