@@ -73,7 +73,7 @@ jobs:
         uses: checkmarx/vorpal-reviewdog-github-action@v1.0.0
         with:
           source_path: testdata/samples/FileA.java,testdata/samples/FileB.java
-          filter_mode: added
+          filter_mode: file
           github_token: ${{ secrets.github_token }}
           reporter: github-pr-check
           level: error
@@ -100,10 +100,11 @@ jobs:
           separator: ','
         
       - name: Vorpal with reviewdog
+        if: ${{ steps.changed-files.outputs.all_changed_files != '' }}
         uses: checkmarx/vorpal-reviewdog-github-action@v1.0.0
         with:
           source_path: "${{ steps.changed-files.outputs.all_changed_files }}"
-          filter_mode: added
+          filter_mode: file
           github_token: ${{ secrets.github_token }}
           reporter: github-pr-check
           level: error
