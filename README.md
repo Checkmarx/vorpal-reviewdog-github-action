@@ -36,7 +36,7 @@ With reporter: github-pr-review a comment is added to the Pull Request Conversat
 
 ### `folders_to_ignore`
 
-**Description**: Specify the folders to ignore on Vorpal scan (comma-separated).
+**Description**: Specify the folders to ignore on Vorpal scan (comma-separated).  
 **Required**: false
 
 ### `level`
