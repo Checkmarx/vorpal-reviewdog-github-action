@@ -16,6 +16,9 @@ else
    IFS=','; set -- $INPUT_SOURCE_PATH; unset IFS
 fi
 
+# Parse folders to ignore
+folders_to_ignore=$(echo "${INPUT_FOLDERS_TO_IGNORE}" | tr ',' ' ')
+
 export REVIEWDOG_GITHUB_API_TOKEN="${INPUT_GITHUB_TOKEN}"
 
 # Create a file to store all the results
@@ -25,13 +28,32 @@ all_results_file="all_results.errorformat"
 # Scan Vorpal for each file
 for file in "$@";
 do
-  echo "${DATETIME} - INF : about to scan file $file"
-  echo "${DATETIME} - INF : vorpal command -s $file -r result.errorformat"
-  /app/bin/vorpal -s "$file" -r result.errorformat
+  # Check if the file is in any of the ignored folders
+  skip_file=false
+  for folder in $folders_to_ignore; do
+    if echo "$file" | grep -q "^$folder"; then
+      echo "${DATETIME} - INF : Skipping file $file as it is in ignored folder $folder"
+      skip_file=true
+      break
+    fi
+  done
 
-  # Append the results to the all_results_file
-  cat result.errorformat >> "$all_results_file"
+  # If not in an ignored folder, proceed with scanning
+  if [ "$skip_file" = false ]; then
+    echo "${DATETIME} - INF : about to scan file $file"
+    echo "${DATETIME} - INF : vorpal command -s $file -r result.errorformat"
+    /app/bin/vorpal -s "$file" -r result.errorformat
+
+    # Append the results to the all_results_file
+    cat result.errorformat >> "$all_results_file"
+  fi
 done
+
+# Check if the all_results_file is empty
+if [ ! -s "$all_results_file" ]; then
+  echo "${DATETIME} - INF : No results found. Skipping Reviewdog."
+  exit 0
+fi
 
 # Reviewdog
 echo "${DATETIME} - INF : Reviewdog executing on version $(reviewdog -version)"

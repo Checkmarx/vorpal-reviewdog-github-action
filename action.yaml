@@ -1,14 +1,17 @@
 # action.yml
-name: "Vorpal Github Action With reviewdog"
-description: "Action Scan files with Vorpal engine and shows with reviewdog annotations and comments in PR"
+name: 'Vorpal Github Action With reviewdog'
+description: 'Action Scan files with Vorpal engine and shows with reviewdog annotations and comments in PR'
 inputs:
   github_token:
     description: 'GITHUB_TOKEN.'
     required: true
     default: ${{ github.token }}
   source_path:
-    description: "The path to the source code to scan"
+    description: 'The path to the source code to scan'
     required: true
+  folders_to_ignore:
+    description: 'The paths of the folders to be ignored during the Vorpal scan'
+    required: false
   level:
     description: 'Report level for reviewdog [info,warning,error]'
     default: 'error'
@@ -31,7 +34,7 @@ inputs:
     description: 'Additional reviewdog flags'
     default: ''
 runs:
-  using: "docker"
+  using: 'docker'
   image: Dockerfile
   env:
     WORKSPACE_PATH: $GITHUB_WORKSPACE
