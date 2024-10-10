@@ -34,6 +34,11 @@ With reporter: github-pr-review a comment is added to the Pull Request Conversat
 **Description**: Specify the source paths to analyze (comma-separated).  
 **Required**: true
 
+### `folders_to_ignore`
+
+**Description**: Specify the folders to ignore on Vorpal scan (comma-separated).
+**Required**: false
+
 ### `level`
 
 **Description**: Report level for reviewdog [info, warning, error].  
@@ -118,5 +123,3 @@ jobs:
 ## License
 
 Apache License Version 2.0
-
-
