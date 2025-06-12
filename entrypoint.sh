@@ -59,7 +59,7 @@ fi
 echo "${DATETIME} - INF : Reviewdog executing on version $(reviewdog -version)"
 cat "$all_results_file" | reviewdog -efm '%f:%l:%c:%m' \
                                    -name="Vorpal" \
-                                   -reporter="${INPUT_REPORTER:-github-pr-check}" \
+                                   -reporter="${INPUT_REPORTER}" \
                                    -filter-mode="${INPUT_FILTER_MODE}" \
                                    -fail-on-error="${INPUT_FAIL_ON_ERROR}" \
                                    -level="${INPUT_LEVEL}" \

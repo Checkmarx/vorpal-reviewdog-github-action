@@ -6,7 +6,7 @@ This action runs `Vorpal` with [reviewdog](https://github.com/reviewdog/reviewdo
  
 Unlike traditional SAST engines that scan entire projects and analyze complex source code flows, Vorpal focuses on individual files and short code snippets, including AI-generated code. It empowers developers with clear, actionable feedback on detected issues, complete with descriptions and remediation advice, enabling them to quickly enhance the security of their codebases. While Vorpal doesn't delve into specific attack vectors, it emphasizes proactive security measures early in the development process, which not only strengthens code security but also reduces and refines findings in later SAST scans, making them more precise and manageable.
 
-Vorpal currently supports `Java`, `JavaScript (Node.js)`, `C#`, and `Python`.
+Vorpal currently supports `Java`, `JavaScript (Node.js)`, `C#`,`Python` and `Go`.
 
 ## Examples
 ### With github-pr-check

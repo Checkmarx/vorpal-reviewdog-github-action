@@ -1,14 +1,14 @@
 # Build Reviewdog executable using Alpine
 FROM alpine:latest AS build-reviewdog
 
-ENV REVIEWDOG_VERSION=v0.20.1
+ENV REVIEWDOG_VERSION=v0.20.3
 
 # Install necessary packages and Reviewdog
 RUN apk --no-cache add curl bash \
     && curl -sfL https://raw.githubusercontent.com/reviewdog/reviewdog/master/install.sh | sh -s -- -b /usr/local/bin ${REVIEWDOG_VERSION}
 
 # Base Image with Vorpal CLI
-FROM checkmarx/vorpal-cli:1.0.116 AS build-vorpal
+FROM checkmarx/vorpal-cli:1.1.4 AS build-vorpal
 
 # Set the working directory
 WORKDIR /app/bin
